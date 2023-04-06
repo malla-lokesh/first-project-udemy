@@ -9,6 +9,7 @@ import classes from './AddUser.module.css';
 const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState('');
   const [enteredAge, setEnteredAge] = useState('');
+  const [enteredCollegeName, setEnteredCollegeName] = useState('');
   const [error, setError] = useState();
 
   const addUserHandler = (event) => {
@@ -27,9 +28,10 @@ const AddUser = (props) => {
       });
       return;
     }
-    props.onAddUser(enteredUsername, enteredAge);
+    props.onAddUser(enteredUsername, enteredAge, enteredCollegeName);
     setEnteredUsername('');
     setEnteredAge('');
+    setEnteredCollegeName('');
   };
 
   const usernameChangeHandler = (event) => {
@@ -38,6 +40,10 @@ const AddUser = (props) => {
 
   const ageChangeHandler = (event) => {
     setEnteredAge(event.target.value);
+  };
+
+  const collegeNameHandler = (event) => {
+    setEnteredCollegeName(event.target.value);
   };
 
   const errorHandler = () => {
@@ -68,6 +74,13 @@ const AddUser = (props) => {
             type="number"
             value={enteredAge}
             onChange={ageChangeHandler}
+          />
+          <label htmlFor='collegeName'>College Name</label>
+          <input 
+            id='collegeName'
+            type='text'
+            value={enteredCollegeName}
+            onChange={collegeNameHandler}
           />
           <Button type="submit">Add User</Button>
         </form>
